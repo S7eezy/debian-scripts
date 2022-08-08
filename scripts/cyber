@@ -5,8 +5,13 @@
 # Crypto
 hashcat
 john
+hashid
 # Fuzzing
 dirb
 # Network & scans
 nmap
 wireshark
+# Forensic
+
+# Debugger
+gdb
