@@ -15,6 +15,7 @@ tldr
 
 # ---- Development ----
 git-all
+texlive-latex-base
 
 # ---- Office ----
 libreoffice
