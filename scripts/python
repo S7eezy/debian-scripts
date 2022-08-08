@@ -1,0 +1,79 @@
+#!/bin/bash
+
+source ../resources/colors
+
+# ---- Prepare sources ----
+sudo apt update
+
+# ---- Install dependencies ----
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev -y
+
+# ---- Ask user for version ----
+echo -e "${BIYellow}------------------------------------------------------------${NC}"
+echo -e -n "${Bold}Choose a Python version ${IYellow}(default: 3.7.13)${NC}${Bold}: ${BIYellow}\n"
+echo -e "${BIYellow}------------------------------------------------------------${NC}"
+tput cuu1 && tput cuu1 && tput cuf 43
+read pyVer
+echo -e "${BIYellow}------------------------------------------------------------${NC}"
+if [ -z "$pyVer" ]
+then
+    pyVer=3.7.13
+fi
+
+IFS='.'
+read -ra ADDR <<<"$pyVer"
+pyVerShort=${ADDR[0]}.${ADDR[1]}
+
+# ---- Download last release ----
+wget https://www.python.org/ftp/python/${pyVer}/Python-${pyVer}.tar.xz
+
+# ---- Unzip and locate ----
+tar xf Python-${pyVer}.tar.xz
+rm Python-${pyVer}.tar.xz
+sudo mv Python-${pyVer} /opt/
+cd /opt/Python-${pyVer}/
+
+# ---- Install and make ----
+./configure --enable-optimizations --enable-shared
+make -j($nproc)
+sudo make altinstall
+sudo ldconfig /opt/Python-${pyVer}
+
+# ---- Set python alias in bashrc ----
+echo "alias python='python${pyVerShort}'" >> ~/.bashrc
+source ~/.bashrc
+
+# ---- Install pip ----
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+
+# ---- Set pip alias in bashrc ----
+echo "alias pip='pip${pyVerShort}'" >> ~/.bashrc
+source ~/.bashrc
+
+# ---- Upgrade pip and rm leftover util ----
+pip install --upgrade pip
+rm get-pip.py
+
+echo -e "${On_IYellow}[WARN]${NC} You must add ${Bold}/home/${BIBlue}$USER${NC}${Bold}/.local/bin ${NC}to your PATH${NC}"
+# ---- Ask user for version ----
+echo -e "${BIYellow}------------------------------------------------------------${NC}"
+echo -e -n "${Bold}Do you want your ${IYellow}PATH ${NC}${Bold}to be automatically updated? ${IYellow}(y/n)${NC}${Bold}: ${BIYellow}\n"
+echo -e "${BIYellow}------------------------------------------------------------${NC}"
+tput cuu1 && tput cuu1 && tput cuf 58
+
+old_stty_cfg=$(stty -g)
+stty raw -echo
+answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
+stty $old_stty_cfg
+if echo "$answer" | grep -iq "^y" ;then
+    echo -e "${BIGreen}Yes, sir${NC}"
+    echo -e "${BIYellow}------------------------------------------------------------${NC}"
+    echo -e "${Bold}Updating PATH: ${NC}${IGreen}export PATH='PATH:/home/$USER/.local/bin' >> ~/.bashrc"
+    echo "export PATH='/home/${USER}/.local/bin:\$PATH'" >> ~/.bashrc
+else
+    echo -e "${BIRed}No, thanks${NC}"
+    echo -e "${BIYellow}------------------------------------------------------------${NC}"
+    echo -e "${On_IYellow}[WARN]${NC}${Bold} You will have to update your path manually${NC}"
+fi
+
