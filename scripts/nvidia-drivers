@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Init
+sudo apt update && sudo apt full-upgrade
+
+# Optional: Use this if you dont know the correct driver to install
+sudo apt install nvidia-detect
+# nvidia-detect
+
+# Most frequently used driver, see nvidia-detect
+sudo apt install nvidia-driver
+
+# Enable optimus for double graphics
+sudo apt install primus
+
+# Mandatory utils
+sudo apt install mesa-utils
+
+# Replace "sezaia" by your username
+sudo usermod -a -G bumblebee sezaia
+
+sudo reboot
