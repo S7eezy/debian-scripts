@@ -70,7 +70,7 @@ if echo "$answer" | grep -iq "^y" ;then
     echo -e "${BIGreen}Yes, sir${NC}"
     echo -e "${BIYellow}------------------------------------------------------------${NC}"
     echo -e "${Bold}Updating PATH: ${NC}${IGreen}export PATH='PATH:/home/$USER/.local/bin' >> ~/.bashrc"
-    echo "export PATH='/home/${USER}/.local/bin:\$PATH'" >> ~/.bashrc
+    echo "export PATH=/home/${USER}/.local/bin:\$PATH" >> ~/.bashrc
 else
     echo -e "${BIRed}No, thanks${NC}"
     echo -e "${BIYellow}------------------------------------------------------------${NC}"
