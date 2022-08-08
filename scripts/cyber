@@ -1,0 +1,12 @@
+# Before installing, manage your own preferences by commenting unwanted packages
+# After configuring your own essentials, run :
+# sudo apt install -y $(grep -vE "^\s*#" filename  | tr "\n" " ")
+
+# Crypto
+hashcat
+john
+# Fuzzing
+dirb
+# Network & scans
+nmap
+wireshark
