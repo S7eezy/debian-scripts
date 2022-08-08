@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Prepare sources
+sudo apt update
+
+# Install dependencies
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev -y
+
+# Download Python3.7 last release
+curl -O https://www.python.org/ftp/python/3.7.13/Python-3.7.13.tar.xz
+tar -xf Python-3.7.13.tar.xz
+sudo mv Python3.7.13 /opt/
+cd /opt/Python3.7.13/
+
+# Install Python3.7
+./configure --enable-optimizations --enable-shared
+make -j ($nproc)
+sudo make altinstall
+sudo ldconfig /opt/Python3.7.13
+
+# Install pip3.7
+sudo apt install -y python3-pip
+
+# Set python alias in bashrc
+echo "alias python='python3.7'" >> ~/.bashrc
