@@ -1,0 +1,17 @@
+# Before installing, manage your own preferences by commenting unwanted packages
+# After configuring your own essentials, run :
+# sudo apt install -y $(grep -vE "^\s*#" filename  | tr "\n" " ")
+
+# ---- Navigators ----
+firefox-esr
+
+# ---- Text editors ----
+vim
+gedit
+
+# ---- Utils ----
+tree
+tldr
+
+# ---- Development ----
+git-all
