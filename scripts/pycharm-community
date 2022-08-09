@@ -9,3 +9,4 @@ echo 'export PATH="$PATH:/opt/pycharm/bin"' >> ~/.bashrc
 source ~/.bashrc
 chmod u+x ../resources/Pycharm.desktop
 sudo cp ../resources/Pycharm.desktop /usr/share/applications/
+rm pycharm-community-2022.2.tar.gz
