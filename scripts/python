@@ -17,30 +17,30 @@ read pyVer
 echo -e "${BIYellow}------------------------------------------------------------${NC}"
 if [ -z "$pyVer" ]
 then
-    pyVer=3.7.13
+    pyVer="3.7.13"
 fi
 
 IFS='.'
 read -ra ADDR <<<"$pyVer"
-pyVerShort=${ADDR[0]}.${ADDR[1]}
+pyShort=${ADDR[0]}.${ADDR[1]}
 
 # ---- Download last release ----
-wget https://www.python.org/ftp/python/${pyVer}/Python-${pyVer}.tar.xz
+wget "https://www.python.org/ftp/python/${pyVer}/Python-${pyVer}.tar.xz"
 
 # ---- Unzip and locate ----
-tar xf Python-${pyVer}.tar.xz
-rm Python-${pyVer}.tar.xz
-sudo mv Python-${pyVer} /opt/
-cd /opt/Python-${pyVer}/
+tar xf "Python-${pyVer}.tar.xz"
+rm "Python-${pyVer}.tar.xz"
+sudo mv "Python-${pyVer}" /opt/
+cd "/opt/Python-${pyVer}/"
 
 # ---- Install and make ----
 ./configure --enable-optimizations --enable-shared
-make -j($nproc)
+make -j $nproc
 sudo make altinstall
-sudo ldconfig /opt/Python-${pyVer}
+sudo ldconfig "/opt/Python-${pyVer}"
 
 # ---- Set python alias in bashrc ----
-echo "alias python='python${pyVerShort}'" >> ~/.bashrc
+echo "alias python='python${pyShort}'" >> ~/.bashrc
 source ~/.bashrc
 
 # ---- Install pip ----
@@ -48,7 +48,7 @@ wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 
 # ---- Set pip alias in bashrc ----
-echo "alias pip='pip${pyVerShort}'" >> ~/.bashrc
+echo "alias pip='pip${pyShort}'" >> ~/.bashrc
 source ~/.bashrc
 
 # ---- Upgrade pip and rm leftover util ----
