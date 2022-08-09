@@ -1,22 +1,14 @@
 #!/bin/bash
 
-# Init
-sudo apt update && sudo apt full-upgrade
+sudo apt update
+sudo apt full-upgrade
 
-# Optional: Use this if you dont know the correct driver to install
-sudo apt install nvidia-detect
-# nvidia-detect
+sudo apt install linux-headers-amd64
+sudo apt install nvidia-driver firmware-misc-nonfree
 
-# Most frequently used driver, see nvidia-detect
-sudo apt install nvidia-driver
-
-# Enable optimus for double graphics
-sudo apt install primus
-
-# Mandatory utils
-sudo apt install mesa-utils
-
-# Replace "sezaia" by your username
-sudo usermod -a -G bumblebee sezaia
+sudo rm /etc/modprobe.d/blacklist-nouveau.conf
+sudo touch /etc/modprobe.d/blacklist-nouveau.conf
+sudo echo -e "blacklist nouveau\noptions nouveau modeset=0" > /etc/modprobe.d/blacklist-nouveau.conf
+sudo update-initramfs -u
 
 sudo reboot
