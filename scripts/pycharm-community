@@ -6,6 +6,7 @@ wget https://download-cdn.jetbrains.com/python/pycharm-community-2022.2.tar.gz
 mkdir pycharm && tar -xvf pycharm-community-2022.2.tar.gz -C pycharm --strip-components 1
 sudo mv pycharm /opt/pycharm
 echo 'export PATH="$PATH:/opt/pycharm/bin"' >> ~/.bashrc
+echo "alias pycharm='pycharm.sh &'" >> ~/.bashrc
 source ~/.bashrc
 chmod u+x ../resources/Pycharm.desktop
 sudo cp ../resources/Pycharm.desktop /usr/share/applications/
