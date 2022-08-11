@@ -1,1 +1,6 @@
-cp ../resources/firefox-desktop /usr/share/applications
+#!/bin/bash
+
+sudo apt update && sudo apt full-upgrade
+
+sudo apt install firefox
+sudo cp ../resources/firefox.desktop /usr/share/applications
