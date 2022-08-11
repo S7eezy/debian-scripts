@@ -6,7 +6,7 @@
 firefox-esr
 
 # ---- Text editors ----
-vim
+#vim
 gedit
 
 # ---- Utils ----
@@ -15,7 +15,7 @@ tldr
 
 # ---- Development ----
 git-all
-texlive-latex-base
+#texlive-latex-base
 
 # ---- Office ----
 libreoffice
