@@ -40,7 +40,7 @@ stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
     echo -e "Yes, sir"
     echo -e "------------------------------------------------------------"
-    sudo dd if=${iso} of=/dev/${device}
+    sudo dc3dd if=${iso} of=/dev/${device} bs=1M
 else
     echo -e "No, please cancel this RIGHT NOW"
     echo -e "------------------------------------------------------------"
