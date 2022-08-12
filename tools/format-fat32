@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo -e "$(lsblk)\n\n"
+
+echo "------------------------------------------------------------"
+echo "Choose a device to format: "
+echo "------------------------------------------------------------"
+
+tput cuu1 && tput cuu1 && tput cuf 27
+
+read device
+echo "------------------------------------------------------------"
+
+sudo parted /dev/${device} --script -- mklabel msdos
+sudo parted /dev/${device} --script -- mkpart primary fat32 1MiB 100%
+sudo mkfs.vfat -F32 /dev/${device}
+
+echo -e "\n\n------------------------------------------------------------"
+echo "Result"
+echo "------------------------------------------------------------"
+sudo parted /dev/${device} --script print
