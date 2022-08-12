@@ -3,10 +3,10 @@
 # sudo apt install -y $(grep -vE "^\s*#" filename  | tr "\n" " ")
 
 # ---- Navigators ----
-firefox-esr
+firefox
 
 # ---- Text editors ----
-#vim
+vim
 gedit
 
 # ---- Utils ----
@@ -15,9 +15,11 @@ tldr
 
 # ---- Development ----
 git-all
-#texlive-latex-base
+texlive-latex-base
 
 # ---- Office ----
 libreoffice
 
-# ---- Databases ----
+# ---- Filesystem ----
+dc3dd
+unzip
