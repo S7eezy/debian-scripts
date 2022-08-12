@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Spoof Debian with Ubuntu 18.04
+sudo cp /etc/os-release-sdk /etc/os-release
+
+# Start sdkmanager
+sdkmanager
+
+# Wait for sdkmanager to close
+process_string="sdkmanager"
+
+while ! pgrep -f "$process_string"
+do
+echo "Waiting for sdkmanager"
+sleep 3
+done
+
+while pgrep -f "$process_string"
+do
+echo "Waiting for sdkmanager to exit"
+sleep 3
+done
+
+# Unspoof Debian
+sudo cp /etc/os-release-default /etc/os-release
