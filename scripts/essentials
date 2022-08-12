@@ -23,3 +23,7 @@ libreoffice
 # ---- Filesystem ----
 dc3dd
 unzip
+
+# ---- Resources monitoring ----
+htop
+neofetch
