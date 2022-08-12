@@ -10,3 +10,10 @@ sudo apt install -y ./sdkmanager_1.8.1-10392_amd64.deb
 echo -e "$(ls)"
 sudo rm sdkmanager_1.8.1-10392_amd64.deb
 
+cd ..
+sudo cp /etc/os-release /etc/os-release-default
+sudo cp ./os-release-sdk /etc/
+sudo cp ./sdk /opt/nvidia/sdk
+sudo chmod 777 /opt/nvidia/sdk
+sudo ln -s /opt/nvidia/sdk /usr/bin/sdk
+
