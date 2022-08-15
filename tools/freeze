@@ -2,6 +2,7 @@
 
 echo -e "$(lsblk)\n\n"
 
+# Device
 echo "------------------------------------------------------------"
 echo "Choose a device to freeze: "
 echo "------------------------------------------------------------"
@@ -9,7 +10,7 @@ tput cuu1 && tput cuu1 && tput cuf 27
 read device
 echo "------------------------------------------------------------"
 
-
+# Output
 echo "------------------------------------------------------------"
 echo "Name the output frozen image: "
 echo "------------------------------------------------------------"
@@ -17,13 +18,12 @@ tput cuu1 && tput cuu1 && tput cuf 30
 read name
 echo "------------------------------------------------------------"
 
-
+# Confirmation
 echo -e "\n\n------------------------------------------------------------"
 echo -e "Are you sure you want to freeze ${device} to ~/frozen/${name} ?"
 echo -e "(y/n): "
 echo -e "------------------------------------------------------------"
 tput cuu1 && tput cuu1 && tput cuf 8
-
 
 old_stty_cfg=$(stty -g)
 stty raw -echo
