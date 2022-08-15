@@ -2,7 +2,7 @@
 
 echo -e "$(lsblk)\n\n"
 
-mkdir -p ~/freeze
+mkdir -p ~/frozen
 
 # Device
 echo "------------------------------------------------------------"
