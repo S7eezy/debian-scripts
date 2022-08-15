@@ -34,7 +34,7 @@ stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
     echo -e "Yes, sir"
     echo -e "------------------------------------------------------------"
-    sudo dd if=/dev/${device} bs=64K status=progress | gzip>~/frozen/${name}.img.gz 
+    sudo dd if=/dev/${device} bs=256k status=progress | gzip>~/frozen/${name}.img.gz 
 else
     echo -e "No, please cancel this RIGHT NOW"
     echo -e "------------------------------------------------------------"
