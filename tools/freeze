@@ -2,6 +2,8 @@
 
 echo -e "$(lsblk)\n\n"
 
+mkdir -p ~/freeze
+
 # Device
 echo "------------------------------------------------------------"
 echo "Choose a device to freeze: "
