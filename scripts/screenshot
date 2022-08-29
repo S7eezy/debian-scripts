@@ -4,4 +4,4 @@ sudo apt install -y gnome-screenshot xclip
 mkdir -p ~/tmp
 
 echo "alias scr='sleep 2 && gnome-screenshot -a --file='~/tmp/temp.jpg' && xclip -selection clipboard -t image/png -i ~/tmp/temp.jpg'" >> ~/.bashrc
-
+source ~/.bashrc
